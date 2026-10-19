@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ==========================================================================
+         [SECTION 0.1] META TAGS & WEBSITE TITLE
+         Kya Karta Hai: Browser ke tab par aapka naam dikhata hai aur mobile/laptop
+         dono screens par website ko responsive banata hai.
+    ========================================================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Verma | VLSI, Embedded Systems & PCB Hardware Portfolio</title>
+
+    <!-- ==========================================================================
+         [SECTION 0.2] EXTERNAL STYLESHEETS, FONTS, ICONS & PDF.JS LIBRARY
+         Kya Karta Hai:
+         1. style.css -> Hamari main design file ko link karta hai.
+         2. Google Fonts -> Space Grotesk, Plus Jakarta Sans, JetBrains Mono.
+         3. FontAwesome & Devicon -> Hardware aur Programming ke official logos lata hai.
+         4. AOS CSS -> Scroll karne par cards ko smoothly animate karta hai.
+         5. PDF.js -> Aapke certificates/ folder se asli PDF ki jhalak (preview) banata hai.
+    ========================================================================== -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         [SECTION 0.3] ANIMATED BACKGROUND CANVAS & AMBIENT MESH ORBS
+         Kya Karta Hai:
+         - .ambient-aurora -> Background mein soft glowing spheres banata hai.
+         - #pcb-cosmos-canvas -> Dark Mode mein Cosmic PCB Current aur Light Mode
+           mein Engineering Blueprint + Copper/Cobalt PCB traces draw karta hai.
+    ========================================================================== -->
+    <div class="ambient-aurora">
+        <div class="aurora-orb orb-1"></div>
+        <div class="aurora-orb orb-2"></div>
+        <div class="aurora-orb orb-3"></div>
+    </div>
+    <canvas id="pcb-cosmos-canvas"></canvas>
+
+    <!-- ==========================================================================
+         [SECTION 0.4] INTERACTIVE CURSOR GLOW & FLARE CORE
+         Kya Karta Hai: Mouse move karne par cursor ke piche roshni aur star-flare
+         sparks chhodta hai (script.js se control hota hai).
+    ========================================================================== -->
+    <div id="cursor-glow"></div>
+    <div id="cursor-core"></div>
+
+    <!-- ==========================================================================
+         [SECTION 0.5] LIVE HARDWARE SYSTEM CLOCK & DATE WIDGET (BOTTOM-LEFT)
+         Kya Karta Hai: Screen ke bottom-left corner mein Kanpur location ke sath
+         live Date aur Time (IST) har second update karta hai.
+    ========================================================================== -->
+    <div id="sys-clock-hud" class="sys-clock-pill">
+        <span class="clk-dot"></span>
+        <span id="clk-date">KANPUR, IN</span>
+        <span class="clk-sep">//</span>
+        <span id="clk-time">00:00:00 IST</span>
+    </div>
+
+    <!-- ==========================================================================
+         [SECTION 1] TOP FLOATING GLASS NAVBAR
+         Kya Karta Hai: Top par fixed navigation bar deta hai jisme aapka naam,
+         saare sections ke smooth scroll links, Dark/Light mode button aur Resume link hai.
+    ========================================================================== -->
+    <header class="header-wrap">
+        <nav class="navbar">
+            <a href="#home" class="brand-logo">
+                <span class="chip-icon"><i class="fa-solid fa-microchip"></i></span>
+                <div class="brand-text">
+                    <strong>KRISHNA VERMA</strong>
+                    <span>ECE // VLSI &amp; EMBEDDED</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#learning">Learning</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Dark / Light Mode Toggle Button -->
+                <button id="theme-toggle" title="Switch Dark / Light Mode">
+                    <i class="fa-solid fa-sun" id="theme-icon"></i>
+                </button>
+                <!-- Direct Resume Download Button (certificates/kvresume.pdf) -->
+                <a href="certificates/kvresume.pdf" target="_blank" download class="nav-cv-btn kv-resume-link">
+                    <i class="fa-solid fa-bolt"></i> RESUME
+                </a>
+                <!-- Mobile Menu Button -->
+                <div class="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==========================================================================
+         MAIN CONTAINER (Website ke saare sections iske andar hain)
+    ========================================================================== -->
+    <main class="container">
+
+        <!-- ======================================================================
+             [SECTION 2] HERO SECTION (INTRODUCTION + CLEAN PROFILE PHOTO)
+             Kya Karta Hai:
+             - Left Side: Aapka main heading, auto-typing terminal, short bio,
+               action buttons aur GitHub/LinkedIn/Email/Phone links dikhata hai.
+             - Right Side: Aapki photo (images/KVIMAGE.jpeg) bina kisi line ke
+               clean frame mein dikhata hai aur niche aapka ECE Tag lagata hai.
+        ====================================================================== -->
+        <section id="home" class="hero">
+            <div class="hero-left" data-aos="fade-right">
+                <div class="circuit-badge">
+                    <span class="live-current-dot"></span>
+                    <span>ECE UNDERGRADUATE • ASPIRING VLSI &amp; EMBEDDED ENGINEER</span>
+                </div>
+
+                <h1 class="hero-heading">
+                    LEARNING &amp; BUILDING<br>
+                    <span class="neon-trace">SILICON, PCBs</span><br>
+                    &amp; HARDWARE TECH.
+                </h1>
+
+                <!-- Auto-Typing Terminal Box -->
+                <div class="typing-console">
+                    <span class="console-prompt">krishna@ece-lab:~$</span>
+                    <span class="typing-text"></span><span class="cursor">_</span>
+                </div>
+
+                <p class="hero-description">
+                    A dedicated Electronics &amp; Communication Engineering learner at <strong>PSIT Kanpur</strong> exploring the hardware stack from foundational <strong>Verilog HDL logic gates</strong> and <strong>4-layer KiCad PCBs</strong> to <strong>embedded microcontrollers &amp; autonomous UAVs</strong>.
+                </p>
+
+                <div class="hero-btns">
+                    <a href="#projects" class="btn-electric">
+                        <i class="fa-solid fa-diagram-project"></i> View Hardware Builds
+                    </a>
+                    <a href="certificates/kvresume.pdf" target="_blank" download class="btn-trace kv-resume-link">
+                        <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+                    </a>
+                    <a href="#contact" class="btn-trace">
+                        <i class="fa-solid fa-paper-plane"></i> Let's Connect
+                    </a>
+                </div>
+
+                <!-- Hero Social Icons -->
+                <div class="social-strip">
+                    <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/krishna-verma24" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:krishnav9219@gmail.com" title="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                    <a href="tel:+919219222815" title="Phone">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Right: Clean Profile Photo Frame -->
+            <div class="hero-right" data-aos="zoom-in">
+                <div class="photo-pcb-stage tilt-3d">
+                    <div class="pcb-frame-outer">
+                        <div class="photo-clean-box">
+                            <img class="kv-profile-img" src="images/KVIMAGE.jpeg" alt="Krishna Verma">
+                        </div>
+                        <div class="photo-caption-bar">
+                            <h3>KRISHNA VERMA</h3>
+                            <p class="caption-tag-main">Aspiring VLSI &amp; Embedded Hardware Engineer</p>
+                            <span class="caption-tag-sub"><i class="fa-solid fa-microchip"></i> Passionate ECE Learner • Logic Gates to PCBs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             [SECTION 3] QUICK STATS BAR
+             Kya Karta Hai: Aapke 6+ Projects, 17+ Certifications, 7.5 CGPA aur
+             2027 Graduation Batch ko 4 highlight cards mein dikhata hai.
+        ====================================================================== -->
+        <section class="stats-bar" data-aos="fade-up">
+            <div class="stat-node tilt-3d">
+                <span class="node-val">06+</span>
+                <span class="node-lbl">Hands-On Hardware Builds</span>
+            </div>
+            <div class="stat-node tilt-3d">
+                <span class="node-val">17+</span>
+                <span class="node-lbl">Verified Certifications</span>
+            </div>
+            <div class="stat-node tilt-3d">
+                <span class="node-val">7.5</span>
+                <span class="node-lbl">Current B.Tech ECE CGPA</span>
+            </div>
+            <div class="stat-node tilt-3d">
+                <span class="node-val">2027</span>
+                <span class="node-lbl">Graduation Batch</span>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             [SECTION 4] ABOUT ME & LEARNING RADAR
+             Kya Karta Hai:
+             - .about-bento -> Aapki engineering story aur quick location/degree details.
+             - #learning -> "What I Have Learned" vs "Currently Learning" ke 2 boxes.
+        ====================================================================== -->
+        <section id="about" class="section">
+            <div class="section-title" data-aos="fade-up">
+                <span class="section-code">01 // ENGINEER PROFILE &amp; LEARNING RADAR</span>
+                <h2>About Me &amp; Learning Journey</h2>
+                <p>Curious hardware learner building strong fundamentals in digital design, circuit layout, and embedded systems.</p>
+            </div>
+
+            <div class="about-bento">
+                <div class="about-card main-bio tilt-3d" data-aos="fade-up">
+                    <h3><i class="fa-solid fa-microchip"></i> My Hardware Journey</h3>
+                    <p>
+                        Hello! I am <strong>Krishna Verma</strong>, an undergraduate student pursuing B.Tech in Electronics &amp; Communication Engineering at <strong>Pranveer Singh Institute of Technology (PSIT), Kanpur</strong>. As an enthusiastic learner in core electronics, I enjoy understanding how systems work from the ground up—starting from Boolean logic gates in <strong>VLSI</strong> to copper traces on a <strong>multi-layer PCB</strong>.
+                    </p>
+                    <p>
+                        Through continuous self-learning, academic projects, and national competitions like <strong>NIDAR (Finalist — MeitY &amp; Drone Federation of India)</strong> and <strong>Smart India Hackathon (SIH) 2025</strong>, I am steadily building my foundation in RTL design, schematic capture, and microcontroller interfacing.
+                    </p>
+                </div>
+
+                <div class="about-card quick-facts tilt-3d" data-aos="fade-up" data-aos-delay="100">
+                    <h3><i class="fa-solid fa-sliders"></i> Quick Telemetry</h3>
+                    <ul class="telemetry-list">
+                        <li><span>Location:</span> <strong>Kanpur City, UP</strong></li>
+                        <li><span>Degree:</span> <strong>B.Tech ECE (CGPA 7.5)</strong></li>
+                        <li><span>Core Interest:</span> <strong>VLSI, PCB &amp; Embedded</strong></li>
+                        <li><span>Goal:</span> <strong class="text-neon">Core Hardware Internships</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Learning Radar Grid -->
+            <div id="learning" class="learning-grid" data-aos="fade-up">
+                <div class="learning-box mastered-box tilt-3d">
+                    <div class="box-head">
+                        <span class="status-dot green"></span>
+                        <h3>What I Have Learned (Core Foundations Built)</h3>
+                    </div>
+                    <ul class="learning-items">
+                        <li><i class="fa-solid fa-check-double"></i> <strong>Digital Electronics &amp; Verilog Basics:</strong> Truth tables, K-map simplification, combinational/sequential blocks (ALU, registers, counters), and modular Verilog HDL.</li>
+                        <li><i class="fa-solid fa-check-double"></i> <strong>PCB Schematic &amp; Layout Design:</strong> Creating schematics, routing 4-layer boards, managing power/ground planes, DRC verification, and generating Gerber files in KiCad &amp; EasyEDA.</li>
+                        <li><i class="fa-solid fa-check-double"></i> <strong>Microcontroller &amp; UAV Interfacing:</strong> Hands-on prototyping with ESP32, Arduino Nano, Raspberry Pi, NRF24L01 wireless modules, GPS, ESCs, and flight controllers.</li>
+                    </ul>
+                </div>
+
+                <div class="learning-box current-box tilt-3d">
+                    <div class="box-head">
+                        <span class="status-dot pulse-cyan"></span>
+                        <h3>Currently Learning &amp; Exploring (Next Milestones)</h3>
+                    </div>
+                    <ul class="learning-items">
+                        <li><i class="fa-solid fa-bolt"></i> <strong>8-Bit Custom CPU Integration:</strong> Completing full datapath integration, custom ISA instruction decoding, and waveform testbench verification in Verilog.</li>
+                        <li><i class="fa-solid fa-bolt"></i> <strong>FPGA &amp; Semiconductor Flow:</strong> Deepening my understanding of RTL synthesis, CMOS digital IC fundamentals, and Static Timing Analysis (STA) concepts.</li>
+                        <li><i class="fa-solid fa-bolt"></i> <strong>Embedded C++ &amp; Signal Integrity:</strong> Strengthening bare-metal firmware practices and learning best practices for mixed-signal multi-layer PCB routing.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             [SECTION 5] SKILLS MATRIX (SQUARE BOXES + LOGOS + LEADERSHIP)
+             Kya Karta Hai:
+             - Column 1: Hardware, VLSI & PCB (KiCad, EasyEDA+Altium, Espressif ESP32).
+             - Column 2: Programming & Software (C++, Python, Linux, MATLAB, Fusion 360).
+             - Bottom Panel: Leadership, Soft Skills & Engineering Practices.
+        ========================================================================== -->
+        <section id="skills" class="section">
+            <div class="section-title" data-aos="fade-up">
+                <span class="section-code">02 // INTERACTIVE SKILL MATRIX</span>
+                <h2>Technical, Hardware &amp; Leadership Skills</h2>
+                <p><i class="fa-solid fa-hand-pointer"></i> <strong>Click on any square skill box below</strong> to see why it is used in ECE and how I apply it.</p>
+            </div>
+
+            <div class="skills-two-columns">
+
+                <!-- COLUMN 1: HARDWARE, VLSI & PCB SKILLS -->
+                <div class="skill-col" data-aos="fade-right">
+                    <h3 class="col-heading"><i class="fa-solid fa-microchip"></i> Hardware, VLSI &amp; PCB Design</h3>
+                    <div class="square-skill-grid">
+
+                        <!-- Verilog HDL -->
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Verilog HDL & RTL Design"
+                             data-category="VLSI & Digital Logic Design"
+                             data-role="Hardware Description Language used in ECE to model and simulate digital logic circuits (gates, ALUs, FSMs, CPUs) at the Register-Transfer Level."
+                             data-usage="Currently using Verilog HDL to design and verify my 8-Bit Custom CPU from scratch using modular testbenches.">
+                            <div class="sq-logo"><i class="fa-solid fa-microchip"></i></div>
+                            <span>Verilog HDL</span>
+                        </div>
+
+                        <!-- KiCad Official Logo -->
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="KiCad EDA (Multi-Layer PCB)"
+                             data-category="PCB Layout & Hardware CAD"
+                             data-role="Professional EDA tool used to capture electronic schematics, route multi-layer copper traces, run Design Rule Checks (DRC), and export Gerber files."
+                             data-usage="Used to design my custom 4-Layer ESP32-C3 Multi-Sensor PCB optimized for signal integrity and fabrication.">
+                            <div class="sq-logo">
+                                <img src="https://cdn.simpleicons.org/kicad/314CB0" alt="KiCad Logo" class="brand-svg-icon">
+                            </div>
+                            <span>KiCad EDA</span>
+                        </div>
+
+                       <!-- EASYEDA & ALTIUM SKILL BOX (FIXED LOGOS) -->
+<div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+     data-title="EasyEDA & Altium Designer"
+     data-category="Schematic Capture & PCB Design"
+     data-role="Industry-standard PCB design tools used for circuit schematic capture, component footprint routing, BOM generation, and manufacturing preparation."
+     data-usage="Trained via Altium Education & MIT Anna University PCB workshops; used EasyEDA & KiCad in my 4-layer ESP32-C3 sensor board layout.">
+    <div class="sq-logo dual-brand-logos">
+        <!-- EasyEDA Icon -->
+        <i class="fa-solid fa-bolt-lightning" style="color: #1E68F6; font-size: 1.6rem;" title="EasyEDA"></i>
+        <!-- Altium / Circuit Board Icon -->
+        <i class="fa-solid fa-microchip" style="color: #A5915F; font-size: 1.6rem;" title="Altium Designer"></i>
+    </div>
+    <span>EasyEDA &amp; Altium</span>
+</div>
+
+                        <!-- ESP32 / C3 Official Espressif Systems Logo -->
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="ESP32 / ESP32-C3 (Espressif Systems)"
+                             data-category="Embedded Microcontrollers & IoT"
+                             data-role="32-bit microcontroller by Espressif Systems featuring integrated Wi-Fi/BLE and hardware peripherals (I2C, SPI, UART, PWM, ADC) for embedded control."
+                             data-usage="Core MCU in my 4-Layer Multi-Sensor PCB design and wireless Gesture Controlled Car project.">
+                            <div class="sq-logo">
+                                <img src="https://cdn.simpleicons.org/espressif/E7352C" alt="Espressif ESP32 Logo" class="brand-svg-icon">
+                            </div>
+                            <span>ESP32 / C3</span>
+                        </div>
+
+                        <!-- Arduino -->
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Arduino Nano & Uno"
+                             data-category="Embedded Prototyping"
+                             data-role="Microcontroller platform widely used in ECE for rapid sensor interfacing, motor control, and wireless transceiver testing."
+                             data-usage="Used with NRF24L01 RF modules to build the transmitter glove and receiver chassis for my Gesture Controlled Car.">
+                            <div class="sq-logo"><i class="devicon-arduino-plain colored"></i></div>
+                            <span>Arduino</span>
+                        </div>
+
+                        <!-- Raspberry Pi -->
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Raspberry Pi"
+                             data-category="Single-Board Computer"
+                             data-role="Linux-based ARM computing board used for embedded Linux, onboard UAV processing, and hardware automation."
+                             data-usage="Explored for Linux-based hardware interfacing and foundational IoT systems.">
+                            <div class="sq-logo"><i class="devicon-raspberrypi-plain colored"></i></div>
+                            <span>Raspberry Pi</span>
+                        </div>
+
+                        <!-- Digital & Analog -->
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Digital & Analog Electronics"
+                             data-category="Core ECE Fundamentals"
+                             data-role="Covers Boolean algebra, K-Maps, logic gates, flip-flops, voltage regulation, and sensor signal conditioning."
+                             data-usage="Applied in simplifying K-map expressions for my 8-bit CPU and designing clean power rails on PCBs.">
+                            <div class="sq-logo"><i class="fa-solid fa-wave-square"></i></div>
+                            <span>Digital &amp; Analog</span>
+                        </div>
+
+                        <!-- UAV Avionics -->
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="UAV Avionics & RF Control"
+                             data-category="Autonomous Aerial Hardware"
+                             data-role="Integration of flight controllers, GPS, ESCs, brushless DC (BLDC) motors, RF receivers, and PID stabilization."
+                             data-usage="Used across my Autonomous FPV Drone, F-22 Raptor RC Aircraft, and VTOL Aircraft builds.">
+                            <div class="sq-logo"><i class="fa-solid fa-helicopter"></i></div>
+                            <span>UAV Avionics</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: PROGRAMMING & ENGINEERING SOFTWARE (FIXED HTML TAG MISMATCH) -->
+                <div class="skill-col" data-aos="fade-left">
+                    <h3 class="col-heading"><i class="fa-solid fa-code"></i> Programming &amp; Engineering Software</h3>
+                    <div class="square-skill-grid">
+
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="C / C++ Programming"
+                             data-category="Embedded Firmware & Logic"
+                             data-role="Core programming language in ECE for writing microcontroller firmware, peripheral drivers, and time-critical control logic."
+                             data-usage="Used for programming Arduino Nano and ESP32 boards across my hardware projects.">
+                            <div class="sq-logo"><i class="devicon-cplusplus-plain colored"></i></div>
+                            <span>C / C++</span>
+                        </div>
+
+<!-- PYTHON SKILL BOX (EXACT OFFICIAL DUAL-TONE BLUE & YELLOW LOGO) -->
+<div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+     data-title="Python Programming"
+     data-category="Scripting & Data Science"
+     data-role="Used for engineering automation, data analysis, scripting, and AI/ML foundations."
+     data-usage="Certified via Infosys Springboard & Udemy; used for scripting and data handling.">
+    <div class="sq-logo">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Logo" class="brand-svg-icon" style="width: 42px; height: 42px;">
+    </div>
+    <span>Python</span>
+</div>
+
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Linux Environment"
+                             data-category="Operating System & EDA"
+                             data-role="Standard operating environment for VLSI EDA workflows, embedded development, and command-line tooling."
+                             data-usage="Used for development workflows, shell commands, and Raspberry Pi operations.">
+                            <div class="sq-logo"><i class="devicon-linux-plain"></i></div>
+                            <span>Linux</span>
+                        </div>
+
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="MATLAB"
+                             data-category="Engineering Simulation"
+                             data-role="Used in ECE for mathematical modeling, signal analysis, and control systems simulation."
+                             data-usage="Used for academic ECE coursework, signal plots, and system verification.">
+                            <div class="sq-logo"><i class="devicon-matlab-plain colored"></i></div>
+                            <span>MATLAB</span>
+                        </div>
+
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Autodesk Fusion 360"
+                             data-category="3D CAD Modeling"
+                             data-role="Used to design 3D enclosures, PCB mounts, and aerodynamic airframe components."
+                             data-usage="Used for structural and hardware component modeling in my UAV projects.">
+                            <div class="sq-logo">
+                                <img src="https://cdn.simpleicons.org/autodesk/0696D7" alt="Autodesk Fusion 360 Logo" class="brand-svg-icon">
+                            </div>
+                            <span>Fusion 360</span>
+                        </div>
+
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Git & GitHub"
+                             data-category="Version Control"
+                             data-role="Tracks source code revisions in Verilog RTL, firmware, and hardware documentation."
+                             data-usage="Used to manage and publish my project repositories on GitHub.">
+                            <div class="sq-logo"><i class="devicon-git-plain colored"></i></div>
+                            <span>Git &amp; GitHub</span>
+                        </div>
+
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="VS Code & Arduino IDE"
+                             data-category="Development Tools"
+                             data-role="Code editors configured for Verilog HDL, C++, Python, and microcontroller serial debugging."
+                             data-usage="Used daily to write, compile, and upload code to hardware targets.">
+                            <div class="sq-logo"><i class="devicon-vscode-plain colored"></i></div>
+                            <span>VS Code / IDE</span>
+                        </div>
+
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Technical Documentation"
+                             data-category="Engineering Practices"
+                             data-role="Preparing clear circuit documentation, ISA tables, test logs, and team engineering reports."
+                             data-usage="Applied in NIDAR mission documentation, SIH reports, and project architecture notes.">
+                            <div class="sq-logo"><i class="fa-solid fa-file-signature"></i></div>
+                            <span>Tech Docs</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- LEADERSHIP, SOFT SKILLS & ENGINEERING PRACTICES -->
+            <div class="soft-skills-panel" data-aos="fade-up">
+                <h3 class="col-heading"><i class="fa-solid fa-users-gear"></i> Leadership, Soft Skills &amp; Engineering Practices</h3>
+                <div class="soft-skill-grid">
+                    <div class="soft-card tilt-3d">
+                        <i class="fa-solid fa-people-group"></i>
+                        <div>
+                            <h4>Team Leadership &amp; Collaboration</h4>
+                            <p>Led &amp; collaborated on multi-disciplinary hardware builds including NIDAR UAV Mission, VTOL aircraft, and Smart India Hackathon (SIH).</p>
+                        </div>
+                    </div>
+                    <div class="soft-card tilt-3d">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <div>
+                            <h4>Hardware-Oriented Research</h4>
+                            <p>Systematic datasheet reading, component selection, schematic verification, and iterative hardware debugging.</p>
+                        </div>
+                    </div>
+                    <div class="soft-card tilt-3d">
+                        <i class="fa-solid fa-brain"></i>
+                        <div>
+                            <h4>Analytical Problem Solving</h4>
+                            <p>Breaking complex digital and embedded challenges into truth tables, modular Verilog blocks, and clean circuit subsystems.</p>
+                        </div>
+                    </div>
+                    <div class="soft-card tilt-3d">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div>
+                            <h4>Technical Communication &amp; Docs</h4>
+                            <p>Preparing structured engineering documentation, BOMs, schematic notes, and clear project presentations in English &amp; Hindi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             [SECTION 6] FEATURED HARDWARE PROJECTS (DIRECT GITHUB LINK)
+             Kya Karta Hai: Aapke images/ folder ki photo aur direct GitHub button deta hai.
+        ========================================================================== -->
+        <section id="projects" class="section">
+            <div class="section-title" data-aos="fade-up">
+                <span class="section-code">03 // HARDWARE &amp; RTL BUILDS</span>
+                <h2>Featured Engineering Projects</h2>
+                <p>Click <strong>"View on GitHub"</strong> on any project card to directly visit my GitHub profile and explore my work.</p>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- 1. 8-Bit CPU -->
+                <article class="project-card tilt-3d" data-aos="fade-up">
+                    <div class="project-img-box">
+                        <span class="proj-badge">2026(8-Bit CPU Design from Scratch)• IN PROGRESS</span>
+                        <img class="smart-img" data-base="images/8BITCPUJPG" src="images/8BITCPUJPG.jpg" alt="8-Bit CPU Design">
+                    </div>
+                    <div class="project-body">
+                        <h3>8-Bit CPU Design from Scratch</h3>
+                        <p>Designing a complete 8-bit CPU from the ground up in Verilog with a custom Instruction Set Architecture (ISA), K-map simplified ALU, registers, program counter, and control unit.</p>
+                        <div class="proj-tags">
+                            <span>Verilog HDL</span>
+                            <span>Custom ISA</span>
+                            <span>K-Maps &amp; ALU</span>
+                            <span>Waveform Verification</span>
+                        </div>
+                        <div class="proj-actions">
+                            <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="btn-git-full">
+                                <i class="fab fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. ESP32-C3 4-Layer PCB -->
+                <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-img-box">
+                        <span class="proj-badge">2026 • 4-LAYER PCB'S</span>
+                        <img class="smart-img" data-base="images/PCBDESIGNPROJECT" src="images/PCBDESIGNPROJECT.jpg" alt="ESP32-C3 4-Layer PCB">
+                    </div>
+                    <div class="project-body">
+                        <h3>ESP32-C3 4-Layer Multi-Sensor PCB Design</h3>
+                        <p>Custom 4-layer PCB around the ESP32-C3 integrating multiple sensor interfaces: schematic capture, multilayer routing, DRC compliance, and Gerber generation for fabrication.</p>
+                        <div class="proj-tags">
+                            <span>KiCad</span>
+                            <span>EasyEDA</span>
+                            <span>4-Layer Stackup</span>
+                            <span>ESP32-C3</span>
+                            <span>Gerber / DFM</span>
+                        </div>
+                        <div class="proj-actions">
+                            <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="btn-git-full">
+                                <i class="fab fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Autonomous Surveillance Drone -->
+                <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-img-box">
+                        <span class="proj-badge">2025 • AUTONOMOUS UAV(NIDAR-CHALLANGE)</span>
+                        <img class="smart-img" data-base="images/AUTONOMUSDRONEPNG" src="images/AUTONOMUSDRONEPNG.png" alt="Autonomous Surveillance Drone">
+                    </div>
+                    <div class="project-body">
+                        <h3>Autonomous Surveillance Drone (FPV-Enabled)</h3>
+                        <p>Built an FPV autonomous UAV integrating GPS, flight controller, ESCs, brushless DC motors, and wireless telemetry modules with iterative flight testing and PID tuning.</p>
+                        <div class="proj-tags">
+                            <span>Embedded Systems</span>
+                            <span>Flight Controller</span>
+                            <span>GPS &amp; FPV</span>
+                            <span>BLDC / ESC</span>
+                        </div>
+                        <div class="proj-actions">
+                            <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="btn-git-full">
+                                <i class="fab fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. RC Aircraft F-22 Raptor -->
+                <article class="project-card tilt-3d" data-aos="fade-up">
+                    <div class="project-img-box">
+                        <span class="proj-badge">2025 • FIXED-WING RC PLANE</span>
+                        <img class="smart-img" data-base="images/RCPLANEJPEG" src="images/RCPLANEJPEG.jpeg" alt="RC Aircraft F-22 Raptor">
+                    </div>
+                    <div class="project-body">
+                        <h3>RC Aircraft — F-22 Raptor Model</h3>
+                        <p>Conceptualized, designed, and fabricated a functional radio-controlled (RC) fixed-wing aircraft inspired by the F-22 Raptor with embedded electronic control and RF operation.</p>
+                        <div class="proj-tags">
+                            <span>Aerodynamics</span>
+                            <span>Embedded Electronics</span>
+                            <span>RF Control</span>
+                            <span>Avionics</span>
+                        </div>
+                        <div class="proj-actions">
+                            <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="btn-git-full">
+                                <i class="fab fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. Gesture Controlled Car -->
+                <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-img-box">
+                        <span class="proj-badge">1ST YEAR • RF TRANSCEIVER</span>
+                        <img class="smart-img" data-base="images/GESTURECONTROLCARWEBP" src="images/GESTURECONTROLCARWEBP.webp" alt="Gesture Controlled Robotic Car">
+                    </div>
+                    <div class="project-body">
+                        <h3>Gesture Controlled Car (ESP32, Arduino Nano &amp; NRF)</h3>
+                        <p>Built a wireless gesture-controlled car in my 1st year. Engineered both the hand-gesture transmitter and chassis receiver circuits using Arduino Nano, ESP32, and NRF24L01 modules.</p>
+                        <div class="proj-tags">
+                            <span>ESP32</span>
+                            <span>Arduino Nano</span>
+                            <span>NRF24L01 RF</span>
+                            <span>Tx/Rx Hardware</span>
+                        </div>
+                        <div class="proj-actions">
+                            <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="btn-git-full">
+                                <i class="fab fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. VTOL Aircraft -->
+                <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-img-box">
+                        <span class="proj-badge">2026(ON-GOING) • TEAM UAV(STANDARD-QUADPLANE)</span>
+                        <img class="smart-img" data-base="images/VTOLPNG" src="images/VTOLPNG.png" alt="VTOL Aircraft">
+                    </div>
+                    <div class="project-body">
+                        <h3>VTOL (Vertical Take-Off &amp; Landing) Aircraft</h3>
+                        <p>Contributed to the design, embedded power distribution, and build of a Vertical Take-Off and Landing (VTOL) hybrid aircraft as part of a collaborative UAV team.</p>
+                        <div class="proj-tags">
+                            <span>VTOL Hybrid</span>
+                            <span>Embedded Control</span>
+                            <span>Team Engineering</span>
+                        </div>
+                        <div class="proj-actions">
+                            <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="btn-git-full">
+                                <i class="fab fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             [SECTION 7] VERIFIED CERTIFICATES (REAL PDF JHALAK PREVIEW)
+             Kya Karta Hai: 17 PDF certificates ka first page scan karke live preview banata hai.
+        ========================================================================== -->
+        <section id="certificates" class="section">
+            <div class="section-title" data-aos="fade-up">
+                <span class="section-code">04 // VERIFIED CERTIFICATE'S (LIVE PDF PREVIEW)</span>
+                <h2>Verified Certifications (17)</h2>
+                <p>Each card automatically renders a live visual preview (jhalak) of your actual PDF certificate. Click any card to open the full certificate.</p>
+            </div>
+
+            <div class="cert-filter-bar" data-aos="fade-up">
+                <button class="c-filter active" data-filter="all">All (17)</button>
+                <button class="c-filter" data-filter="core">VLSI, PCB &amp; Semiconductors</button>
+                <button class="c-filter" data-filter="embedded">Embedded, UAV &amp; IoT</button>
+                <button class="c-filter" data-filter="software">AI, Python &amp; Cyber</button>
+            </div>
+
+            <div class="certificate-grid">
+
+                <!-- 1 -->
+                <div class="cert-split-card tilt-3d" data-category="core" data-pdf="KRISHNA VERMA_Micro_Learning_Module_Certificate.pdf" data-title="Introduction to Semiconductors">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Introduction to Semiconductors</h3>
+                        <p>Intel, MeitY &amp; India Semiconductor Mission</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="cert-split-card tilt-3d" data-category="core" data-pdf="semiconductor maven silicon.pdf" data-title="Semiconductors: VLSI & Embedded Systems">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Semiconductors: VLSI &amp; Embedded Systems</h3>
+                        <p>Maven Silicon</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="cert-split-card tilt-3d" data-category="core" data-pdf="VLSI CERTIFICATE.pdf" data-title="VLSI for Beginners">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>VLSI for Beginners</h3>
+                        <p>NIELIT Calicut (MeitY)</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="cert-split-card tilt-3d" data-category="core" data-pdf="altium pcb designing course.pdf" data-title="PCB Basic Design Course">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>PCB Basic Design Course</h3>
+                        <p>Altium Education</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="cert-split-card tilt-3d" data-category="core" data-pdf="pcb design anna certificate.pdf" data-title="Fundamentals of PCB Design Workshop">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Fundamentals of PCB Design Workshop</h3>
+                        <p>MIT, Anna University</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="cert-split-card tilt-3d" data-category="embedded" data-pdf="EMBEDDED SYSTEM E CERTIFICATE.pdf" data-title="Embedded Systems for Beginners">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Embedded Systems for Beginners</h3>
+                        <p>NIELIT Calicut (MeitY)</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="cert-split-card tilt-3d" data-category="embedded" data-pdf="nidar certificate.pdf" data-title="NIDAR PR1 Final Mission">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>NIDAR PR1 Final Mission</h3>
+                        <p>MeitY &amp; Drone Federation of India</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="cert-split-card tilt-3d" data-category="embedded" data-pdf="IOT Gems 8.0 Hands-on Training on Drone Technologies.pdf" data-title="IoT Gems 8.0: Drone Technologies">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>IoT Gems 8.0: Drone Technologies</h3>
+                        <p>Hands-on Hardware Training</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 9 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="oracle certificate.pdf" data-title="OCI 2025 Certified Generative AI Professional">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>OCI 2025 Certified Generative AI Professional</h3>
+                        <p>Oracle Cloud Infrastructure</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 10 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="infosys spring python data base.pdf" data-title="Python Programming & Data Science">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Python Programming &amp; Data Science</h3>
+                        <p>Infosys Springboard</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 11 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="INFOSYS HTML-5.pdf" data-title="HTML5 - The Language">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>HTML5 — The Language</h3>
+                        <p>Infosys Springboard</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 12 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="udmey python.pdf" data-title="Python Programming Certification">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Python Programming Certification</h3>
+                        <p>Udemy</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 13 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="IBMDesign20250913-30-uznqb7.pdf" data-title="IBM Enterprise Design Thinking">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>IBM Design Certification</h3>
+                        <p>IBM SkillsBuild</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 14 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="KRSHNA_VERMA_TCS CERTIFICATE.pdf" data-title="TCS Professional Certification">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>TCS Professional Certification</h3>
+                        <p>Tata Consultancy Services (TCS)</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 15 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="CISO CYBERSECURITY CERTIFICATE.pdf" data-title="CISO Cybersecurity Certification">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>CISO Cybersecurity Certification</h3>
+                        <p>Cybersecurity Credential</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 16 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="Introduction_to_Cybersecurity_certificate.pdf" data-title="Introduction to Cybersecurity">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Introduction to Cybersecurity</h3>
+                        <p>Cisco Networking Academy</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+                <!-- 17 -->
+                <div class="cert-split-card tilt-3d" data-category="software" data-pdf="BEN 10 X CERTIFICATION WORKSHOOP.pdf" data-title="Be10x AI Certification Workshop">
+                    <div class="cert-jhalak-box">
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                        <canvas class="pdf-preview-canvas"></canvas>
+                        <div class="jhalak-hover-overlay"><i class="fa-solid fa-expand"></i> Click to View Full Certificate</div>
+                    </div>
+                    <div class="cert-card-footer">
+                        <h3>Be10x AI Certification Workshop</h3>
+                        <p>Technical Workshop Credential</p>
+                        <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             [SECTION 8] EDUCATION & SCHOOLING (PSITWEBG & GURUNANAKPUBLICSCHOOLWEBG)
+             Kya Karta Hai: Aapke college aur school ki photos ke sath B.Tech, Class 12th aur 10th dikhata hai.
+        ========================================================================== -->
+        <section id="education" class="section">
+            <div class="section-title" data-aos="fade-up">
+                <span class="section-code">05 // ACADEMIC INSTITUTIONS</span>
+                <h2>Education &amp; Schooling</h2>
+                <p>My academic journey from high school science foundations to B.Tech ECE at PSIT Kanpur.</p>
+            </div>
+
+            <div class="edu-cards-grid">
+
+                <!-- B.Tech PSIT -->
+                <div class="edu-photo-card tilt-3d" data-aos="fade-up">
+                    <div class="edu-campus-img">
+                        <span class="edu-year-tag">2023 — 2027</span>
+                        <img class="smart-img" data-base="images/PSITWEBG" src="images/PSITWEBG.webp" alt="PSIT Kanpur">
+                    </div>
+                    <div class="edu-card-body">
+                        <h3>Bachelor of Technology (B.Tech)</h3>
+                        <h4>Electronics &amp; Communication Engineering</h4>
+                        <p><i class="fa-solid fa-building-columns"></i> Pranveer Singh Institute of Technology (PSIT), Kanpur</p>
+                        <div class="edu-score-badge">Current CGPA: <strong>7.5</strong></div>
+                    </div>
+                </div>
+
+                <!-- Class XII -->
+                <div class="edu-photo-card tilt-3d" data-aos="fade-up" data-aos-delay="100">
+                    <div class="edu-campus-img">
+                        <span class="edu-year-tag">2022 — 2023</span>
+                        <img class="smart-img" data-base="images/GURUNANAKPUBLICSCHOOLWEBG" src="images/GURUNANAKPUBLICSCHOOLWEBG.webp" alt="Guru Nanak Public School">
+                    </div>
+                    <div class="edu-card-body">
+                        <h3>Intermediate (Class XII — PCM)</h3>
+                        <h4>Physics, Chemistry &amp; Mathematics</h4>
+                        <p><i class="fa-solid fa-school"></i> Guru Nanak Public School, Kanpur</p>
+                        <div class="edu-score-badge">Percentage: <strong>72.5%</strong></div>
+                    </div>
+                </div>
+
+                <!-- Class X (70.5%) -->
+                <div class="edu-photo-card tilt-3d" data-aos="fade-up" data-aos-delay="200">
+                    <div class="edu-campus-img">
+                        <span class="edu-year-tag">2020 — 2021</span>
+                        <img class="smart-img" data-base="images/GURUNANAKPUBLICSCHOOLWEBG" src="images/GURUNANAKPUBLICSCHOOLWEBG.webp" alt="Guru Nanak Public School">
+                    </div>
+                    <div class="edu-card-body">
+                        <h3>High School (Class X — Science)</h3>
+                        <h4>Science &amp; Mathematics</h4>
+                        <p><i class="fa-solid fa-school"></i> Guru Nanak Public School, Kanpur</p>
+                        <div class="edu-score-badge">Percentage: <strong>70.5%</strong></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             [SECTION 9] CONTACT SECTION
+             Kya Karta Hai: Left side mein Email, Phone, Location aur bottom-left mein social logos;
+             Right side mein message transmission form hai.
+        ========================================================================== -->
+        <section id="contact" class="section">
+            <div class="contact-panel tilt-3d" data-aos="fade-up">
+                <div class="contact-left">
+                    <h2>Let's Build <span class="neon-trace">Hardware</span> Together.</h2>
+                    <p>Available for internships, core ECE roles, PCB layout projects, and research collaborations.</p>
+
+                    <div class="contact-cards">
+                        <a href="mailto:krishnav9219@gmail.com" class="c-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <span>EMAIL</span>
+                                <strong>krishnav9219@gmail.com</strong>
+                            </div>
+                        </a>
+                        <a href="tel:+919219222815" class="c-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <span>PHONE</span>
+                                <strong>+91 9219222815</strong>
+                            </div>
+                        </a>
+                        <div class="c-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <span>LOCATION</span>
+                                <strong>Kanpur City, Uttar Pradesh, India</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Logo Pills at Bottom-Left of Contact Box -->
+                    <div class="contact-bottom-socials">
+                        <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="social-logo-pill" title="GitHub">
+                            <i class="fab fa-github"></i> <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/krishna-verma24" target="_blank" rel="noopener noreferrer" class="social-logo-pill" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
+                        </a>
+                        <a href="mailto:krishnav9219@gmail.com" class="social-logo-pill" title="Email">
+                            <i class="fa-solid fa-envelope"></i> <span>Email</span>
+                        </a>
+                        <a href="certificates/kvresume.pdf" target="_blank" download class="social-logo-pill kv-resume-link" title="Resume">
+                            <i class="fa-solid fa-file-pdf"></i> <span>Resume</span>
+                        </a>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="contact-form">
+                    <input type="text" id="sender-name" placeholder="Your Full Name" required>
+                    <input type="email" id="sender-email" placeholder="Your Email Address" required>
+                    <input type="text" id="sender-subject" placeholder="Subject (e.g., VLSI/Embedded Internship)" required>
+                    <textarea rows="5" id="sender-message" placeholder="Write your message..." required></textarea>
+                    <button type="submit" class="btn-electric full-w">
+                        <i class="fa-solid fa-paper-plane"></i> Transmit Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================================================
+         [SECTION 10] POPUP MODALS (SKILL DETAILS & FULL PDF VIEWER)
+    ========================================================================== -->
+    <!-- Skill Role Popup Modal -->
+    <div id="skill-modal" class="hud-modal">
+        <div class="hud-modal-box">
+            <button class="modal-close" onclick="closeModals()">&times;</button>
+            <span id="s-modal-cat" class="modal-eyebrow">ECE DOMAIN</span>
+            <h3 id="s-modal-title">Skill Name</h3>
+            <div class="modal-block">
+                <h4><i class="fa-solid fa-microchip"></i> Why It Is Used in ECE:</h4>
+                <p id="s-modal-role"></p>
+            </div>
+            <div class="modal-block">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> How I Used It in My Work:</h4>
+                <p id="s-modal-usage"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Full-Screen PDF Viewer Modal -->
+    <div id="cert-modal" class="hud-modal">
+        <div class="hud-modal-box large-modal">
+            <button class="modal-close" onclick="closeModals()">&times;</button>
+            <span class="modal-eyebrow">VERIFIED CREDENTIAL PREVIEW</span>
+            <h3 id="c-modal-title">Certificate Title</h3>
+            <div class="cert-iframe-wrap">
+                <iframe id="c-modal-iframe" src=""></iframe>
+            </div>
+            <div class="modal-footer-bar">
+                <a id="c-modal-open" href="#" target="_blank" class="btn-electric">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Original PDF in New Tab
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         [SECTION 11] FOOTER
+    ========================================================================== -->
+    <footer class="footer">
+        <div class="container footer-flex">
+            <p>© 2026 <strong>Krishna Verma</strong> • B.Tech ECE, PSIT Kanpur</p>
+            <a href="#home" class="back-top-link"><i class="fa-solid fa-arrow-up"></i> Back to Top</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
