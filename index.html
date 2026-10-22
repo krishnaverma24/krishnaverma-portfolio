@@ -3,8 +3,6 @@
 <head>
     <!-- ==========================================================================
          [SECTION 0.1] META TAGS & WEBSITE TITLE
-         Kya Karta Hai: Browser ke tab par aapka naam dikhata hai aur mobile/laptop
-         dono screens par website ko responsive banata hai.
     ========================================================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +10,6 @@
 
     <!-- ==========================================================================
          [SECTION 0.2] EXTERNAL STYLESHEETS, FONTS, ICONS & PDF.JS LIBRARY
-         Kya Karta Hai:
-         1. style.css -> Hamari main design file ko link karta hai.
-         2. Google Fonts -> Space Grotesk, Plus Jakarta Sans, JetBrains Mono.
-         3. FontAwesome & Devicon -> Hardware aur Programming ke official logos lata hai.
-         4. AOS CSS -> Scroll karne par cards ko smoothly animate karta hai.
-         5. PDF.js -> Aapke certificates/ folder se asli PDF ki jhalak (preview) banata hai.
     ========================================================================== -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -30,10 +22,6 @@
 
     <!-- ==========================================================================
          [SECTION 0.3] ANIMATED BACKGROUND CANVAS & AMBIENT MESH ORBS
-         Kya Karta Hai:
-         - .ambient-aurora -> Background mein soft glowing spheres banata hai.
-         - #pcb-cosmos-canvas -> Dark Mode mein Cosmic PCB Current aur Light Mode
-           mein Engineering Blueprint + Copper/Cobalt PCB traces draw karta hai.
     ========================================================================== -->
     <div class="ambient-aurora">
         <div class="aurora-orb orb-1"></div>
@@ -44,16 +32,12 @@
 
     <!-- ==========================================================================
          [SECTION 0.4] INTERACTIVE CURSOR GLOW & FLARE CORE
-         Kya Karta Hai: Mouse move karne par cursor ke piche roshni aur star-flare
-         sparks chhodta hai (script.js se control hota hai).
     ========================================================================== -->
     <div id="cursor-glow"></div>
     <div id="cursor-core"></div>
 
     <!-- ==========================================================================
          [SECTION 0.5] LIVE HARDWARE SYSTEM CLOCK & DATE WIDGET (BOTTOM-LEFT)
-         Kya Karta Hai: Screen ke bottom-left corner mein Kanpur location ke sath
-         live Date aur Time (IST) har second update karta hai.
     ========================================================================== -->
     <div id="sys-clock-hud" class="sys-clock-pill">
         <span class="clk-dot"></span>
@@ -64,8 +48,6 @@
 
     <!-- ==========================================================================
          [SECTION 1] TOP FLOATING GLASS NAVBAR
-         Kya Karta Hai: Top par fixed navigation bar deta hai jisme aapka naam,
-         saare sections ke smooth scroll links, Dark/Light mode button aur Resume link hai.
     ========================================================================== -->
     <header class="header-wrap">
         <nav class="navbar">
@@ -93,8 +75,8 @@
                 <button id="theme-toggle" title="Switch Dark / Light Mode">
                     <i class="fa-solid fa-sun" id="theme-icon"></i>
                 </button>
-                <!-- Direct Resume Download Button (certificates/kvresume.pdf) -->
-                <a href="certificates/kvresume.pdf" target="_blank" download class="nav-cv-btn kv-resume-link">
+                <!-- Secure Resume Request Trigger Button -->
+                <a href="#" onclick="openResumeModal(event)" class="nav-cv-btn kv-resume-link">
                     <i class="fa-solid fa-bolt"></i> RESUME
                 </a>
                 <!-- Mobile Menu Button -->
@@ -106,17 +88,12 @@
     </header>
 
     <!-- ==========================================================================
-         MAIN CONTAINER (Website ke saare sections iske andar hain)
+         MAIN CONTAINER
     ========================================================================== -->
     <main class="container">
 
         <!-- ======================================================================
-             [SECTION 2] HERO SECTION (INTRODUCTION + CLEAN PROFILE PHOTO)
-             Kya Karta Hai:
-             - Left Side: Aapka main heading, auto-typing terminal, short bio,
-               action buttons aur GitHub/LinkedIn/Email/Phone links dikhata hai.
-             - Right Side: Aapki photo (images/KVIMAGE.jpeg) bina kisi line ke
-               clean frame mein dikhata hai aur niche aapka ECE Tag lagata hai.
+             [SECTION 2] HERO SECTION
         ====================================================================== -->
         <section id="home" class="hero">
             <div class="hero-left" data-aos="fade-right">
@@ -145,7 +122,7 @@
                     <a href="#projects" class="btn-electric">
                         <i class="fa-solid fa-diagram-project"></i> View Hardware Builds
                     </a>
-                    <a href="certificates/kvresume.pdf" target="_blank" download class="btn-trace kv-resume-link">
+                    <a href="#" onclick="openResumeModal(event)" class="btn-trace kv-resume-link">
                         <i class="fa-solid fa-file-arrow-down"></i> Download Resume
                     </a>
                     <a href="#contact" class="btn-trace">
@@ -189,8 +166,6 @@
 
         <!-- ======================================================================
              [SECTION 3] QUICK STATS BAR
-             Kya Karta Hai: Aapke 6+ Projects, 17+ Certifications, 7.5 CGPA aur
-             2027 Graduation Batch ko 4 highlight cards mein dikhata hai.
         ====================================================================== -->
         <section class="stats-bar" data-aos="fade-up">
             <div class="stat-node tilt-3d">
@@ -213,9 +188,6 @@
 
         <!-- ======================================================================
              [SECTION 4] ABOUT ME & LEARNING RADAR
-             Kya Karta Hai:
-             - .about-bento -> Aapki engineering story aur quick location/degree details.
-             - #learning -> "What I Have Learned" vs "Currently Learning" ke 2 boxes.
         ====================================================================== -->
         <section id="about" class="section">
             <div class="section-title" data-aos="fade-up">
@@ -275,12 +247,8 @@
         </section>
 
         <!-- ======================================================================
-             [SECTION 5] SKILLS MATRIX (SQUARE BOXES + LOGOS + LEADERSHIP)
-             Kya Karta Hai:
-             - Column 1: Hardware, VLSI & PCB (KiCad, EasyEDA+Altium, Espressif ESP32).
-             - Column 2: Programming & Software (C++, Python, Linux, MATLAB, Fusion 360).
-             - Bottom Panel: Leadership, Soft Skills & Engineering Practices.
-        ========================================================================== -->
+             [SECTION 5] SKILLS MATRIX
+        ====================================================================== -->
         <section id="skills" class="section">
             <div class="section-title" data-aos="fade-up">
                 <span class="section-code">02 // INTERACTIVE SKILL MATRIX</span>
@@ -289,13 +257,9 @@
             </div>
 
             <div class="skills-two-columns">
-
-                <!-- COLUMN 1: HARDWARE, VLSI & PCB SKILLS -->
                 <div class="skill-col" data-aos="fade-right">
                     <h3 class="col-heading"><i class="fa-solid fa-microchip"></i> Hardware, VLSI &amp; PCB Design</h3>
                     <div class="square-skill-grid">
-
-                        <!-- Verilog HDL -->
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="Verilog HDL & RTL Design"
                              data-category="VLSI & Digital Logic Design"
@@ -305,7 +269,6 @@
                             <span>Verilog HDL</span>
                         </div>
 
-                        <!-- KiCad Official Logo -->
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="KiCad EDA (Multi-Layer PCB)"
                              data-category="PCB Layout & Hardware CAD"
@@ -317,22 +280,18 @@
                             <span>KiCad EDA</span>
                         </div>
 
-                       <!-- EASYEDA & ALTIUM SKILL BOX (FIXED LOGOS) -->
-<div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
-     data-title="EasyEDA & Altium Designer"
-     data-category="Schematic Capture & PCB Design"
-     data-role="Industry-standard PCB design tools used for circuit schematic capture, component footprint routing, BOM generation, and manufacturing preparation."
-     data-usage="Trained via Altium Education & MIT Anna University PCB workshops; used EasyEDA & KiCad in my 4-layer ESP32-C3 sensor board layout.">
-    <div class="sq-logo dual-brand-logos">
-        <!-- EasyEDA Icon -->
-        <i class="fa-solid fa-bolt-lightning" style="color: #1E68F6; font-size: 1.6rem;" title="EasyEDA"></i>
-        <!-- Altium / Circuit Board Icon -->
-        <i class="fa-solid fa-microchip" style="color: #A5915F; font-size: 1.6rem;" title="Altium Designer"></i>
-    </div>
-    <span>EasyEDA &amp; Altium</span>
-</div>
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="EasyEDA & Altium Designer"
+                             data-category="Schematic Capture & PCB Design"
+                             data-role="Industry-standard PCB design tools used for circuit schematic capture, component footprint routing, BOM generation, and manufacturing preparation."
+                             data-usage="Trained via Altium Education & MIT Anna University PCB workshops; used EasyEDA & KiCad in my 4-layer ESP32-C3 sensor board layout.">
+                            <div class="sq-logo dual-brand-logos">
+                                <i class="fa-solid fa-bolt-lightning" style="color: #1E68F6; font-size: 1.6rem;" title="EasyEDA"></i>
+                                <i class="fa-solid fa-microchip" style="color: #A5915F; font-size: 1.6rem;" title="Altium Designer"></i>
+                            </div>
+                            <span>EasyEDA &amp; Altium</span>
+                        </div>
 
-                        <!-- ESP32 / C3 Official Espressif Systems Logo -->
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="ESP32 / ESP32-C3 (Espressif Systems)"
                              data-category="Embedded Microcontrollers & IoT"
@@ -344,7 +303,6 @@
                             <span>ESP32 / C3</span>
                         </div>
 
-                        <!-- Arduino -->
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="Arduino Nano & Uno"
                              data-category="Embedded Prototyping"
@@ -354,7 +312,6 @@
                             <span>Arduino</span>
                         </div>
 
-                        <!-- Raspberry Pi -->
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="Raspberry Pi"
                              data-category="Single-Board Computer"
@@ -364,7 +321,6 @@
                             <span>Raspberry Pi</span>
                         </div>
 
-                        <!-- Digital & Analog -->
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="Digital & Analog Electronics"
                              data-category="Core ECE Fundamentals"
@@ -374,7 +330,6 @@
                             <span>Digital &amp; Analog</span>
                         </div>
 
-                        <!-- UAV Avionics -->
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="UAV Avionics & RF Control"
                              data-category="Autonomous Aerial Hardware"
@@ -383,15 +338,12 @@
                             <div class="sq-logo"><i class="fa-solid fa-helicopter"></i></div>
                             <span>UAV Avionics</span>
                         </div>
-
                     </div>
                 </div>
 
-                <!-- COLUMN 2: PROGRAMMING & ENGINEERING SOFTWARE (FIXED HTML TAG MISMATCH) -->
                 <div class="skill-col" data-aos="fade-left">
                     <h3 class="col-heading"><i class="fa-solid fa-code"></i> Programming &amp; Engineering Software</h3>
                     <div class="square-skill-grid">
-
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="C / C++ Programming"
                              data-category="Embedded Firmware & Logic"
@@ -401,17 +353,16 @@
                             <span>C / C++</span>
                         </div>
 
-<!-- PYTHON SKILL BOX (EXACT OFFICIAL DUAL-TONE BLUE & YELLOW LOGO) -->
-<div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
-     data-title="Python Programming"
-     data-category="Scripting & Data Science"
-     data-role="Used for engineering automation, data analysis, scripting, and AI/ML foundations."
-     data-usage="Certified via Infosys Springboard & Udemy; used for scripting and data handling.">
-    <div class="sq-logo">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Logo" class="brand-svg-icon" style="width: 42px; height: 42px;">
-    </div>
-    <span>Python</span>
-</div>
+                        <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
+                             data-title="Python Programming"
+                             data-category="Scripting & Data Science"
+                             data-role="Used for engineering automation, data analysis, scripting, and AI/ML foundations."
+                             data-usage="Certified via Infosys Springboard & Udemy; used for scripting and data handling.">
+                            <div class="sq-logo">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Logo" class="brand-svg-icon" style="width: 42px; height: 42px;">
+                            </div>
+                            <span>Python</span>
+                        </div>
 
                         <div class="sq-skill-box tilt-3d" onclick="openSkillModal(this)"
                              data-title="Linux Environment"
@@ -468,13 +419,11 @@
                             <div class="sq-logo"><i class="fa-solid fa-file-signature"></i></div>
                             <span>Tech Docs</span>
                         </div>
-
                     </div>
                 </div>
-
             </div>
 
-            <!-- LEADERSHIP, SOFT SKILLS & ENGINEERING PRACTICES -->
+            <!-- Leadership & Soft Skills Panel -->
             <div class="soft-skills-panel" data-aos="fade-up">
                 <h3 class="col-heading"><i class="fa-solid fa-users-gear"></i> Leadership, Soft Skills &amp; Engineering Practices</h3>
                 <div class="soft-skill-grid">
@@ -511,9 +460,8 @@
         </section>
 
         <!-- ======================================================================
-             [SECTION 6] FEATURED HARDWARE PROJECTS (DIRECT GITHUB LINK)
-             Kya Karta Hai: Aapke images/ folder ki photo aur direct GitHub button deta hai.
-        ========================================================================== -->
+             [SECTION 6] FEATURED HARDWARE PROJECTS
+        ====================================================================== -->
         <section id="projects" class="section">
             <div class="section-title" data-aos="fade-up">
                 <span class="section-code">03 // HARDWARE &amp; RTL BUILDS</span>
@@ -522,11 +470,9 @@
             </div>
 
             <div class="projects-grid">
-
-                <!-- 1. 8-Bit CPU -->
                 <article class="project-card tilt-3d" data-aos="fade-up">
                     <div class="project-img-box">
-                        <span class="proj-badge">2026(8-Bit CPU Design from Scratch)• IN PROGRESS</span>
+                        <span class="proj-badge">2026 (8-Bit CPU Design) • IN PROGRESS</span>
                         <img class="smart-img" data-base="images/8BITCPUJPG" src="images/8BITCPUJPG.jpg" alt="8-Bit CPU Design">
                     </div>
                     <div class="project-body">
@@ -546,7 +492,6 @@
                     </div>
                 </article>
 
-                <!-- 2. ESP32-C3 4-Layer PCB -->
                 <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-img-box">
                         <span class="proj-badge">2026 • 4-LAYER PCB'S</span>
@@ -570,10 +515,9 @@
                     </div>
                 </article>
 
-                <!-- 3. Autonomous Surveillance Drone -->
                 <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-img-box">
-                        <span class="proj-badge">2025 • AUTONOMOUS UAV(NIDAR-CHALLANGE)</span>
+                        <span class="proj-badge">2025 • AUTONOMOUS UAV (NIDAR)</span>
                         <img class="smart-img" data-base="images/AUTONOMUSDRONEPNG" src="images/AUTONOMUSDRONEPNG.png" alt="Autonomous Surveillance Drone">
                     </div>
                     <div class="project-body">
@@ -593,7 +537,6 @@
                     </div>
                 </article>
 
-                <!-- 4. RC Aircraft F-22 Raptor -->
                 <article class="project-card tilt-3d" data-aos="fade-up">
                     <div class="project-img-box">
                         <span class="proj-badge">2025 • FIXED-WING RC PLANE</span>
@@ -616,7 +559,6 @@
                     </div>
                 </article>
 
-                <!-- 5. Gesture Controlled Car -->
                 <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-img-box">
                         <span class="proj-badge">1ST YEAR • RF TRANSCEIVER</span>
@@ -639,10 +581,9 @@
                     </div>
                 </article>
 
-                <!-- 6. VTOL Aircraft -->
                 <article class="project-card tilt-3d" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-img-box">
-                        <span class="proj-badge">2026(ON-GOING) • TEAM UAV(STANDARD-QUADPLANE)</span>
+                        <span class="proj-badge">2026 (ON-GOING) • VTOL QUADPLANE</span>
                         <img class="smart-img" data-base="images/VTOLPNG" src="images/VTOLPNG.png" alt="VTOL Aircraft">
                     </div>
                     <div class="project-body">
@@ -660,19 +601,17 @@
                         </div>
                     </div>
                 </article>
-
             </div>
         </section>
 
         <!-- ======================================================================
-             [SECTION 7] VERIFIED CERTIFICATES (REAL PDF JHALAK PREVIEW)
-             Kya Karta Hai: 17 PDF certificates ka first page scan karke live preview banata hai.
-        ========================================================================== -->
+             [SECTION 7] VERIFIED CERTIFICATES
+        ====================================================================== -->
         <section id="certificates" class="section">
             <div class="section-title" data-aos="fade-up">
                 <span class="section-code">04 // VERIFIED CERTIFICATE'S (LIVE PDF PREVIEW)</span>
                 <h2>Verified Certifications (17)</h2>
-                <p>Each card automatically renders a live visual preview (jhalak) of your actual PDF certificate. Click any card to open the full certificate.</p>
+                <p>Each card automatically renders a live visual preview of your actual PDF certificate. Click any card to open the full certificate.</p>
             </div>
 
             <div class="cert-filter-bar" data-aos="fade-up">
@@ -683,7 +622,6 @@
             </div>
 
             <div class="certificate-grid">
-
                 <!-- 1 -->
                 <div class="cert-split-card tilt-3d" data-category="core" data-pdf="KRISHNA VERMA_Micro_Learning_Module_Certificate.pdf" data-title="Introduction to Semiconductors">
                     <div class="cert-jhalak-box">
@@ -921,14 +859,12 @@
                         <button class="cert-view-btn"><i class="fa-solid fa-eye"></i> View Certificate</button>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <!-- ======================================================================
-             [SECTION 8] EDUCATION & SCHOOLING (PSITWEBG & GURUNANAKPUBLICSCHOOLWEBG)
-             Kya Karta Hai: Aapke college aur school ki photos ke sath B.Tech, Class 12th aur 10th dikhata hai.
-        ========================================================================== -->
+             [SECTION 8] EDUCATION & SCHOOLING
+        ====================================================================== -->
         <section id="education" class="section">
             <div class="section-title" data-aos="fade-up">
                 <span class="section-code">05 // ACADEMIC INSTITUTIONS</span>
@@ -937,8 +873,6 @@
             </div>
 
             <div class="edu-cards-grid">
-
-                <!-- B.Tech PSIT -->
                 <div class="edu-photo-card tilt-3d" data-aos="fade-up">
                     <div class="edu-campus-img">
                         <span class="edu-year-tag">2023 — 2027</span>
@@ -952,7 +886,6 @@
                     </div>
                 </div>
 
-                <!-- Class XII -->
                 <div class="edu-photo-card tilt-3d" data-aos="fade-up" data-aos-delay="100">
                     <div class="edu-campus-img">
                         <span class="edu-year-tag">2022 — 2023</span>
@@ -966,7 +899,6 @@
                     </div>
                 </div>
 
-                <!-- Class X (70.5%) -->
                 <div class="edu-photo-card tilt-3d" data-aos="fade-up" data-aos-delay="200">
                     <div class="edu-campus-img">
                         <span class="edu-year-tag">2020 — 2021</span>
@@ -979,15 +911,12 @@
                         <div class="edu-score-badge">Percentage: <strong>70.5%</strong></div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <!-- ======================================================================
              [SECTION 9] CONTACT SECTION
-             Kya Karta Hai: Left side mein Email, Phone, Location aur bottom-left mein social logos;
-             Right side mein message transmission form hai.
-        ========================================================================== -->
+        ====================================================================== -->
         <section id="contact" class="section">
             <div class="contact-panel tilt-3d" data-aos="fade-up">
                 <div class="contact-left">
@@ -1018,7 +947,6 @@
                         </div>
                     </div>
 
-                    <!-- Social Logo Pills at Bottom-Left of Contact Box -->
                     <div class="contact-bottom-socials">
                         <a href="https://github.com/krishnaverma24" target="_blank" rel="noopener noreferrer" class="social-logo-pill" title="GitHub">
                             <i class="fab fa-github"></i> <span>GitHub</span>
@@ -1029,7 +957,7 @@
                         <a href="mailto:krishnav9219@gmail.com" class="social-logo-pill" title="Email">
                             <i class="fa-solid fa-envelope"></i> <span>Email</span>
                         </a>
-                        <a href="certificates/kvresume.pdf" target="_blank" download class="social-logo-pill kv-resume-link" title="Resume">
+                        <a href="#" onclick="openResumeModal(event)" class="social-logo-pill kv-resume-link" title="Resume">
                             <i class="fa-solid fa-file-pdf"></i> <span>Resume</span>
                         </a>
                     </div>
@@ -1050,7 +978,7 @@
     </main>
 
     <!-- ==========================================================================
-         [SECTION 10] POPUP MODALS (SKILL DETAILS & FULL PDF VIEWER)
+         [SECTION 10] POPUP MODALS
     ========================================================================== -->
     <!-- Skill Role Popup Modal -->
     <div id="skill-modal" class="hud-modal">
@@ -1083,6 +1011,29 @@
                     <i class="fa-solid fa-up-right-from-square"></i> Open Original PDF in New Tab
                 </a>
             </div>
+        </div>
+    </div>
+
+    <!-- SECURE RESUME REQUEST POPUP MODAL (FORMESPREE + GOOGLE DRIVE INTEGRATED) -->
+    <div id="resume-request-modal" class="hud-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="hud-modal-box" style="background: #121212; border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; width: 90%; max-width: 450px; position: relative;">
+            <button class="modal-close" onclick="closeResumeModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <span class="modal-eyebrow" style="color: #00ffcc; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">SECURE ACCESS</span>
+            <h3 style="color: #fff; margin: 10px 0; font-size: 1.3rem;">Request Resume Access</h3>
+            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">
+                Enter your details. Submission notifies Krishna Verma instantly via Gmail, and provides immediate access to the Google Drive resume link!
+            </p>
+            
+            <!-- Formspree Endpoint Form -->
+            <form action="https://formspree.io/f/mpppanko" method="POST" class="contact-form" onsubmit="handleResumeSubmit(event)">
+                <input type="text" name="name" placeholder="Your Name / Company Name" required style="width: 100%; box-sizing: border-box; margin-bottom: 12px; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 6px;">
+                <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; box-sizing: border-box; margin-bottom: 12px; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 6px;">
+                <textarea name="message" rows="3" placeholder="Why do you need the resume? (e.g. VLSI Internship / Recruiter)" required style="width: 100%; box-sizing: border-box; margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 6px;"></textarea>
+                
+                <button type="submit" class="btn-electric full-w" style="width: 100%; padding: 12px; background: #00ffcc; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">
+                    <i class="fa-solid fa-paper-plane"></i> Request & Open Resume
+                </button>
+            </form>
         </div>
     </div>
 
