@@ -225,8 +225,6 @@ renderBackground();
 
 /* ==========================================================================
    [JS MODULE 5] INTERACTIVE CURSOR FLARE TRAIL GENERATOR
-   Kya Karta Hai: Jab mouse move hota hai toh cursor ke piche glowing
-   star-flare particles banata hai jo rotate hokar fade hote hain.
 ========================================================================== */
 const cGlow = document.getElementById("cursor-glow");
 const cCore = document.getElementById("cursor-core");
@@ -266,7 +264,6 @@ window.addEventListener("mousemove", e => {
 
 /* ==========================================================================
    [JS MODULE 6] 3D PERSPECTIVE TILT EFFECT ON CARDS
-   Kya Karta Hai: Kisi bhi card par mouse le jaane par use 3D angle par tilt karta hai.
 ========================================================================== */
 document.querySelectorAll(".tilt-3d").forEach(el => {
     el.addEventListener("mousemove", e => {
@@ -282,9 +279,6 @@ document.querySelectorAll(".tilt-3d").forEach(el => {
 
 /* ==========================================================================
    [JS MODULE 7] SMART IMAGE EXTENSION RESOLVER
-   Kya Karta Hai: Aapke images/ folder mein KVIMAGE, Project Photos, PSITWEBG
-   aur GURUNANAKPUBLICSCHOOLWEBG ke sahi extension (.webp, .jpg, .png) ko
-   automatically dhoondh kar load karta hai.
 ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     const kvImgs = document.querySelectorAll(".kv-profile-img");
@@ -332,8 +326,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ==========================================================================
    [JS MODULE 8] REAL PDF.JS CERTIFICATE JHALAK (THUMBNAIL) ENGINE
-   Kya Karta Hai: Aapke certificates/ folder mein rakhi 17 PDF files ka
-   First Page scan karke har certificate card ke upar live preview banata hai.
 ========================================================================== */
 if (window.pdfjsLib) {
     pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
@@ -435,4 +427,27 @@ if (contactForm) {
         const mailtoLink = `mailto:krishnav9219@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
         window.location.href = mailtoLink;
     });
+}
+
+/* ==========================================================================
+   [JS MODULE 10] SECURE RESUME REQUEST & GOOGLE DRIVE DIRECT DOWNLOAD LINK
+========================================================================== */
+function openResumeModal(e) {
+    if (e) e.preventDefault();
+    const modal = document.getElementById('resume-request-modal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function closeResumeModal() {
+    const modal = document.getElementById('resume-request-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function handleResumeSubmit(event) {
+    // Formspree par notification jayegi, aur user ko direct Google Drive download link mil jayega
+    setTimeout(() => {
+        alert("Request sent successfully! Downloading resume...");
+        window.open("https://drive.google.com/uc?export=download&id=12qxpsWOHtsJAukhj21Xw6J3fBD2HXhyR", "_blank");
+        closeResumeModal();
+    }, 500);
 }
